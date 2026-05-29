@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abraham Cabales — Graphic Design & Automation</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple: #534AB7;
+    --purple-light: #EEEDFE;
+    --purple-mid: #AFA9EC;
+    --purple-dark: #26215C;
+    --teal: #1D9E75;
+    --teal-light: #E1F5EE;
+    --amber: #EF9F27;
+    --amber-light: #FAEEDA;
+    --coral: #D85A30;
+    --coral-light: #FAECE7;
+    --text: #1a1a2e;
+    --text-muted: #6b6b8a;
+    --bg: #fafaff;
+    --white: #ffffff;
+    --border: rgba(83,74,183,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250,250,255,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--purple-dark);
+    letter-spacing: -0.5px;
+  }
+
+  .nav-logo span { color: var(--purple); }
+
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--purple); }
+
+  .nav-cta {
+    background: var(--purple);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 99px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .nav-cta:hover { background: var(--purple-dark); transform: scale(1.03); }
+
+  /* HERO */
+  .hero {
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 40px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero-bg-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .blob1 { width: 500px; height: 500px; background: var(--purple-light); top: -100px; left: -100px; }
+  .blob2 { width: 400px; height: 400px; background: var(--teal-light); bottom: -80px; right: -80px; }
+  .blob3 { width: 300px; height: 300px; background: var(--amber-light); top: 40%; left: 60%; }
+
+  .hero-inner { position: relative; z-index: 1; max-width: 720px; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--purple-light);
+    color: var(--purple);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 18px;
+    border-radius: 99px;
+    margin-bottom: 28px;
+    border: 1px solid var(--purple-mid);
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .badge-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--purple);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(42px, 7vw, 76px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    color: var(--purple-dark);
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .hero h1 .highlight {
+    color: var(--purple);
+    position: relative;
+    display: inline-block;
+  }
+
+  .hero h1 .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: var(--amber);
+    border-radius: 3px;
+    z-index: -1;
+    opacity: 0.6;
+  }
+
+  .hero-bio {
+    font-size: 18px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto 36px;
+    font-weight: 300;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .btn {
+    padding: 13px 28px;
+    border-radius: 99px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn:hover { transform: translateY(-2px); }
+
+  .btn-solid {
+    background: var(--purple);
+    color: white;
+    box-shadow: 0 4px 20px rgba(83,74,183,0.3);
+  }
+
+  .btn-solid:hover { box-shadow: 0 6px 28px rgba(83,74,183,0.45); }
+
+  .btn-ghost {
+    background: white;
+    color: var(--purple);
+    border: 1.5px solid var(--purple-mid);
+  }
+
+  .hero-scroll {
+    margin-top: 56px;
+    animation: fadeUp 0.6s 0.5s ease both;
+  }
+
+  .scroll-hint {
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: var(--purple-mid);
+    animation: scrollDown 1.5s infinite;
+  }
+
+  @keyframes scrollDown {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTIONS */
+  section { padding: 100px 40px; }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: var(--purple-dark);
+    letter-spacing: -1px;
+    margin-bottom: 48px;
+    max-width: 520px;
+  }
+
+  .container { max-width: 1000px; margin: 0 auto; }
+
+  /* ABOUT */
+  #about { background: white; }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .about-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .about-card:hover { transform: translateY(-4px); border-color: var(--purple-mid); }
+
+  .about-icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .about-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--purple-dark);
+  }
+
+  .about-card p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+
+  /* PROJECTS */
+  #projects { background: var(--bg); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .project-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(83,74,183,0.12);
+  }
+
+  .project-thumb {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+  }
+
+  .project-body { padding: 24px; }
+
+  .project-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 12px;
+    border-radius: 99px;
+    margin-bottom: 12px;
+  }
+
+  .project-body h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--purple-dark);
+    margin-bottom: 8px;
+  }
+
+  .project-body p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+  /* SKILLS */
+  #skills { background: white; }
+
+  .skills-outer { display: flex; flex-direction: column; gap: 36px; }
+
+  .skills-group h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .skills-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  .skill-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: 99px;
+    font-size: 14px;
+    font-weight: 400;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    cursor: default;
+  }
+
+  .skill-pill:hover {
+    background: var(--purple-light);
+    border-color: var(--purple-mid);
+    transform: scale(1.04);
+  }
+
+  .skill-pill .skill-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+
+  /* CONTACT */
+  #contact { background: var(--purple-dark); }
+
+  #contact .section-label { color: var(--purple-mid); }
+  #contact .section-title { color: white; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .contact-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    text-decoration: none;
+    color: white;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .contact-card:hover {
+    background: rgba(255,255,255,0.13);
+    transform: translateY(-3px);
+  }
+
+  .contact-icon {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .contact-info label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.55;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .contact-info span {
+    font-size: 15px;
+    font-weight: 400;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--purple-dark);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+    padding: 28px 40px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  footer span { color: rgba(255,255,255,0.7); }
+
+  /* MOBILE */
+  @media (max-width: 640px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    section { padding: 64px 20px; }
+    .hero { padding: 60px 20px; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Abraham<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Let's talk</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-blob blob1"></div>
+  <div class="hero-bg-blob blob2"></div>
+  <div class="hero-bg-blob blob3"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      Available for freelance work
+    </div>
+    <h1>Hi, I'm <span class="highlight">Abraham</span> Cabales</h1>
+    <p class="hero-bio">I help build brands by creating catchy graphic design and efficient workflow by integrating automation tools.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-solid">See my work</a>
+      <a href="#contact" class="btn btn-ghost">Get in touch</a>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-hint">
+        <span>Scroll down</span>
+        <div class="scroll-line"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <p class="section-label">About me</p>
+    <h2 class="section-title">Design that pops. Workflows that fly.</h2>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-icon" style="background:#EEEDFE;">🎨</div>
+        <h3>Graphic design</h3>
+        <p>I craft visual identities, logos, and brand assets that make businesses stand out and connect deeply with their audience.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon" style="background:#E1F5EE;">⚡</div>
+        <h3>Automation</h3>
+        <p>I build smart workflows using tools like Make and Zapier that save hours of manual work every week — so you can focus on growth.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon" style="background:#FAEEDA;">🤝</div>
+        <h3>Client-first mindset</h3>
+        <p>I listen first, design second. Every project starts with understanding your goals so the output actually solves a real problem.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon" style="background:#FAECE7;">🚀</div>
+        <h3>Fast turnaround</h3>
+        <p>I deliver quality work on time. Whether it's a logo or a full automation setup, I keep things moving without cutting corners.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <p class="section-label">Projects</p>
+    <h2 class="section-title">Things I've built and designed.</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-thumb" style="background:#EEEDFE;">🎨</div>
+        <div class="project-body">
+          <span class="project-tag" style="background:#EEEDFE; color:#3C3489;">Branding</span>
+          <h3>Brand identity — Your Client Here</h3>
+          <p>Logo design, color palette, typography guide, and social media kit for a growing local business.</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb" style="background:#E1F5EE;">⚡</div>
+        <div class="project-body">
+          <span class="project-tag" style="background:#E1F5EE; color:#085041;">Automation</span>
+          <h3>Workflow automation — Onboarding</h3>
+          <p>Cut client onboarding time by 60% using Make to automate emails, task creation, and document delivery.</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb" style="background:#FAEEDA;">📱</div>
+        <div class="project-body">
+          <span class="project-tag" style="background:#FAEEDA; color:#412402;">Social Media</span>
+          <h3>Social media kit — Fashion Brand</h3>
+          <p>Designed a full set of post templates, story layouts, and highlight covers in a cohesive brand style.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <p class="section-label">Skills</p>
+    <h2 class="section-title">Tools I use every day.</h2>
+    <div class="skills-outer">
+      <div class="skills-group">
+        <h4>Design</h4>
+        <div class="skills-row">
+          <div class="skill-pill"><span class="skill-dot" style="background:#534AB7;"></span> Adobe Illustrator</div>
+          <div class="skill-pill"><span class="skill-dot" style="background:#534AB7;"></span> Adobe Photoshop</div>
+          <div class="skill-pill"><span class="skill-dot" style="background:#534AB7;"></span> Figma</div>
+          <div class="skill-pill"><span class="skill-dot" style="background:#534AB7;"></span> Canva</div>
+          <div class="skill-pill"><span class="skill-dot" style="background:#534AB7;"></span> InDesign</div>
+        </div>
+      </div>
+      <div class="skills-group">
+        <h4>Automation</h4>
+        <div class="skills-row">
+          <div class="skill-pill"><span class="skill-dot" style="background:#1D9E75;"></span> Make (Integromat)</div>
+          <div class="skill-pill"><span class="skill-dot" style="background:#1D9E75;"></span> Zapier</div>
+          <div class="skill-pill"><span class="skill-dot" style="background:#1D9E75;"></span> Notion</div>
+          <div class="skill-pill"><span class="skill-dot" style="background:#1D9E75;"></span> Airtable</div>
+          <div class="skill-pill"><span class="skill-dot" style="background:#1D9E75;"></span> ChatGPT / AI tools</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Let's build something great together.</h2>
+    <div class="contact-grid">
+      <a href="mailto:abzrahamcabales@gmail.com" class="contact-card">
+        <div class="contact-icon" style="background:rgba(255,255,255,0.1);">📧</div>
+        <div class="contact-info">
+          <label>Email</label>
+          <span>abzrahamcabales@gmail.com</span>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-card">
+        <div class="contact-icon" style="background:rgba(255,255,255,0.1);">💼</div>
+        <div class="contact-info">
+          <label>LinkedIn</label>
+          <span>linkedin.com/in/yourprofile</span>
+        </div>
+      </a>
+      <a href="https://behance.net/yourprofile" target="_blank" class="contact-card">
+        <div class="contact-icon" style="background:rgba(255,255,255,0.1);">🎨</div>
+        <div class="contact-info">
+          <label>Behance</label>
+          <span>behance.net/yourprofile</span>
+        </div>
+      </a>
+      <a href="https://facebook.com/yourprofile" target="_blank" class="contact-card">
+        <div class="contact-icon" style="background:rgba(255,255,255,0.1);">📘</div>
+        <div class="contact-info">
+          <label>Facebook</label>
+          <span>facebook.com/yourprofile</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Designed & built by <span>Abraham Cabales</span> — 2025
+</footer>
+
+</body>
+</html>
